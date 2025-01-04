@@ -6,19 +6,19 @@ settings:
 
 dependencies:
   dexie:
-    specifier: ^3.2.4
+    specifier: ^3.2.7
     version: 3.2.7
   dexie-react-hooks:
     specifier: ^1.1.7
     version: 1.1.7(@types/react@18.3.18)(dexie@3.2.7)(react@18.3.1)
   react:
-    specifier: ^18.2.0
+    specifier: ^18.3.1
     version: 18.3.1
   react-dom:
-    specifier: ^18.2.0
+    specifier: ^18.3.1
     version: 18.3.1(react@18.3.1)
   react-router-dom:
-    specifier: ^6.22.0
+    specifier: ^6.28.1
     version: 6.28.1(react-dom@18.3.1)(react@18.3.1)
   xlsx:
     specifier: ^0.18.5
@@ -26,13 +26,13 @@ dependencies:
 
 devDependencies:
   '@testing-library/react':
-    specifier: ^14.2.1
+    specifier: ^14.3.1
     version: 14.3.1(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)
   '@types/react':
-    specifier: ^18.2.55
+    specifier: ^18.3.18
     version: 18.3.18
   '@types/react-dom':
-    specifier: ^18.2.19
+    specifier: ^18.3.5
     version: 18.3.5(@types/react@18.3.18)
   '@typescript-eslint/eslint-plugin':
     specifier: ^6.21.0
@@ -41,46 +41,46 @@ devDependencies:
     specifier: ^6.21.0
     version: 6.21.0(eslint@8.57.1)(typescript@5.7.2)
   '@vitejs/plugin-react':
-    specifier: ^4.2.1
+    specifier: ^4.3.4
     version: 4.3.4(vite@5.4.11)
   '@vitest/coverage-v8':
-    specifier: ^1.2.2
+    specifier: ^1.6.0
     version: 1.6.0(vitest@1.6.0)
   autoprefixer:
-    specifier: ^10.4.17
+    specifier: ^10.4.20
     version: 10.4.20(postcss@8.4.49)
   eslint:
-    specifier: ^8.56.0
+    specifier: ^8.57.1
     version: 8.57.1
   eslint-plugin-react-hooks:
-    specifier: ^4.6.0
+    specifier: ^4.6.2
     version: 4.6.2(eslint@8.57.1)
   eslint-plugin-react-refresh:
-    specifier: ^0.4.5
+    specifier: ^0.4.16
     version: 0.4.16(eslint@8.57.1)
   happy-dom:
-    specifier: ^13.3.8
+    specifier: ^13.10.1
     version: 13.10.1
   postcss:
-    specifier: ^8.4.35
+    specifier: ^8.4.49
     version: 8.4.49
   prettier:
-    specifier: ^3.2.5
+    specifier: ^3.4.2
     version: 3.4.2
   tailwindcss:
-    specifier: ^3.4.1
+    specifier: ^3.4.17
     version: 3.4.17
   typescript:
-    specifier: ^5.2.2
+    specifier: ^5.7.2
     version: 5.7.2
   vite:
-    specifier: ^5.1.0
+    specifier: ^5.4.11
     version: 5.4.11
   vite-plugin-pwa:
     specifier: ^0.17.5
     version: 0.17.5(vite@5.4.11)(workbox-build@7.3.0)(workbox-window@7.3.0)
   vitest:
-    specifier: ^1.2.2
+    specifier: ^1.6.0
     version: 1.6.0(happy-dom@13.10.1)
 
 packages:
