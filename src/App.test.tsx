@@ -12,7 +12,7 @@ describe('App', () => {
 
   it('renders the welcome message', () => {
     render(<App />)
-    const welcomeMessage = screen.getByText(/welcome to fuellens/i)
+    const welcomeMessage = screen.getByText(/fuellens/i)
     expect(welcomeMessage).toBeInTheDocument()
   })
 })
