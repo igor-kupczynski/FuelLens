@@ -1,16 +1,82 @@
+import { useState, useEffect } from 'react';
+import { FuelEntryForm } from './components/FuelEntryForm';
+import { RecentEntriesList } from './components/RecentEntriesList';
+import { BasicStats } from './components/BasicStats';
+import { ImportDialog } from './components/ImportDialog';
+import { getRecentEntries } from './db';
+
 function App() {
-    return (
-      <div className="min-h-screen bg-gray-100">
-        <header className="bg-white shadow">
-          <div className="max-w-7xl mx-auto py-6 px-4">
-            <h1 className="text-3xl font-bold text-gray-900">FuelLens</h1>
+  const [showImport, setShowImport] = useState(false);
+  const [lastOdometer, setLastOdometer] = useState<number>();
+  const [key, setKey] = useState(0);
+
+  useEffect(() => {
+    loadLastOdometer();
+  }, []);
+
+  const loadLastOdometer = async () => {
+    try {
+      const entries = await getRecentEntries(1);
+      if (entries.length > 0) {
+        setLastOdometer(entries[0].odometer);
+      }
+    } catch (err) {
+      console.error('Failed to load last odometer:', err);
+    }
+  };
+
+  const handleSuccess = () => {
+    loadLastOdometer();
+    setKey(prev => prev + 1);
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <header className="bg-white shadow">
+        <div className="max-w-7xl mx-auto py-6 px-4">
+          <div className="flex justify-between items-center">
+            <h1 className="text-3xl font-bold text-gray-900">
+              FuelLens
+            </h1>
+            <button
+              onClick={() => setShowImport(true)}
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              Import Excel
+            </button>
           </div>
-        </header>
-        <main className="max-w-7xl mx-auto py-6 px-4">
-          <p>Welcome to FuelLens</p>
-        </main>
-      </div>
-    )
-  }
-  
-  export default App
+        </div>
+      </header>
+
+      <main className="max-w-7xl mx-auto py-6 px-4">
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="space-y-6">
+            <FuelEntryForm
+              lastOdometer={lastOdometer}
+              onSuccess={handleSuccess}
+            />
+            <BasicStats key={`stats-${key}`} />
+          </div>
+          <div>
+            <RecentEntriesList
+              key={`list-${key}`}
+              onDelete={handleSuccess}
+            />
+          </div>
+        </div>
+      </main>
+
+      {showImport && (
+        <ImportDialog
+          onClose={() => setShowImport(false)}
+          onSuccess={() => {
+            setShowImport(false);
+            handleSuccess();
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;
