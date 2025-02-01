@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { FuelEntryForm } from './components/FuelEntryForm';
 import { RecentEntriesList } from './components/RecentEntriesList';
 import { BasicStats } from './components/BasicStats';
-import { getRecentEntries } from './db';
+import { getRecentEntries, clearAllEntries } from './db';
 
 function App() {
   const [lastOdometer, setLastOdometer] = useState<number>();
@@ -28,6 +28,19 @@ function App() {
     setKey(prev => prev + 1);
   };
 
+  const handleClearAll = async () => {
+    if (window.confirm('Are you sure you want to clear all entries? This action cannot be undone.')) {
+      try {
+        await clearAllEntries();
+        setLastOdometer(undefined);
+        handleSuccess();
+      } catch (err) {
+        console.error('Failed to clear entries:', err);
+        alert('Failed to clear entries. Please try again.');
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100">
       <header className="bg-white shadow">
@@ -36,6 +49,12 @@ function App() {
             <h1 className="text-3xl font-bold text-gray-900">
               FuelLens
             </h1>
+            <button
+              onClick={handleClearAll}
+              className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Clear All Entries
+            </button>
           </div>
         </div>
       </header>

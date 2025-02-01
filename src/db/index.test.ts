@@ -1,5 +1,5 @@
 import 'fake-indexeddb/auto';
-import { db, addFuelEntry, getRecentEntries, getAllEntries, deleteFuelEntry, getBasicStats } from './index';
+import { db, addFuelEntry, getRecentEntries, getAllEntries, deleteFuelEntry, getBasicStats, clearAllEntries } from './index';
 
 describe('FuelLensDatabase', () => {
   beforeEach(async () => {
@@ -94,5 +94,29 @@ describe('FuelLensDatabase', () => {
       totalDistance: 1100,
       trend: 'improving'
     });
+  });
+
+  it('should clear all entries', async () => {
+    const entries = [
+      { date: new Date('2023-01-01'), odometer: 500, liters: 50, cost: 100, currency: 'USD' },
+      { date: new Date('2023-01-02'), odometer: 900, liters: 40, cost: 80, currency: 'USD' },
+      { date: new Date('2023-01-03'), odometer: 1000, liters: 12, cost: 24, currency: 'USD' }
+    ];
+
+    // Add multiple entries
+    for (const entry of entries) {
+      await addFuelEntry(entry);
+    }
+
+    // Verify entries were added
+    let allEntries = await getAllEntries();
+    expect(allEntries.length).toBe(3);
+
+    // Clear all entries
+    await clearAllEntries();
+
+    // Verify all entries were removed
+    allEntries = await getAllEntries();
+    expect(allEntries.length).toBe(0);
   });
 }); 

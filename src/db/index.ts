@@ -75,6 +75,10 @@ export const getBasicStats = async () => {
   };
 };
 
+export const clearAllEntries = async () => {
+  return await db.fuelEntries.clear();
+};
+
 function calculateTrend(entries: FuelEntry[]): 'improving' | 'worsening' | 'neutral' {
   if (entries.length < 2) return 'neutral';
   
