@@ -53,11 +53,11 @@ export const getBasicStats = async () => {
     return null;
   }
 
-  const totalDistance = entries[entries.length - 1].odometer - entries[0].odometer;
+  const totalDistance = entries[entries.length - 1].odometer;
   const totalFuel = entries.reduce((sum, entry) => sum + entry.liters, 0);
   const totalCost = entries.reduce((sum, entry) => sum + entry.cost, 0);
   
-  const avgConsumption = (totalFuel * 100) / totalDistance; // L/100km
+  const avgConsumption = totalFuel / (totalDistance / 100);
   const costPerKm = totalCost / totalDistance;
 
   // Calculate consumption trend
