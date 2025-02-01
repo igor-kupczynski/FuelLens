@@ -2,11 +2,9 @@ import { useState, useEffect } from 'react';
 import { FuelEntryForm } from './components/FuelEntryForm';
 import { RecentEntriesList } from './components/RecentEntriesList';
 import { BasicStats } from './components/BasicStats';
-import { ImportDialog } from './components/ImportDialog';
 import { getRecentEntries } from './db';
 
 function App() {
-  const [showImport, setShowImport] = useState(false);
   const [lastOdometer, setLastOdometer] = useState<number>();
   const [key, setKey] = useState(0);
 
@@ -38,12 +36,6 @@ function App() {
             <h1 className="text-3xl font-bold text-gray-900">
               FuelLens
             </h1>
-            <button
-              onClick={() => setShowImport(true)}
-              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-            >
-              Import Excel
-            </button>
           </div>
         </div>
       </header>
@@ -65,16 +57,6 @@ function App() {
           </div>
         </div>
       </main>
-
-      {showImport && (
-        <ImportDialog
-          onClose={() => setShowImport(false)}
-          onSuccess={() => {
-            setShowImport(false);
-            handleSuccess();
-          }}
-        />
-      )}
     </div>
   );
 }
