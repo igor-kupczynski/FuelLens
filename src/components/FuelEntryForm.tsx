@@ -96,7 +96,7 @@ export function FuelEntryForm({ lastOdometer, onSuccess }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto p-4">
+    <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4 max-w-md mx-auto p-4">
       <div className="space-y-2">
         <label htmlFor="date" className="block text-sm font-medium">
           Date

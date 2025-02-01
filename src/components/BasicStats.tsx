@@ -15,7 +15,7 @@ export function BasicStats() {
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
-    loadStats();
+    void loadStats();
   }, []);
 
   const loadStats = async () => {

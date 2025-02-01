@@ -13,7 +13,7 @@ export function RecentEntriesList({ onDelete }: Props) {
   const [swipedItemId, setSwipedItemId] = useState<number | null>(null);
 
   useEffect(() => {
-    loadEntries();
+    void loadEntries();
   }, []);
 
   const loadEntries = async () => {
@@ -40,7 +40,7 @@ export function RecentEntriesList({ onDelete }: Props) {
     const diff = touchStart - currentTouch;
 
     if (diff > 50) { // Threshold for delete action
-      handleDelete(id);
+      void handleDelete(id);
       setTouchStart(null);
       setSwipedItemId(null);
     }
